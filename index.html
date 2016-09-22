@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<title>OverlayModel example</title>
+
+	<link rel="stylesheet" href="https://necolas.github.io/normalize.css/4.1.1/normalize.css" />
+	<link rel="stylesheet" href="_overlay-model.css" />
+	<style type="text/css">
+		* {
+			box-sizing: border-box;
+		}
+	</style>
+</head>
+<body>
+	<button class="js-toggle-overlay">
+		Toggle overlay
+	</button>
+
+	<script type="text/javascript" src="OverlayModel.js"></script>
+	<script type="text/javascript">
+		document.querySelector('.js-toggle-overlay').addEventListener('click', () => {
+			new OverlayModel({
+				"title": "Example title",
+				"content": "Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.",
+				"images": [
+					{
+						"src": "https://placehold.it/700x300",
+						"title": "Example alt text"
+					},
+					{
+						"src": "https://placehold.it/700x300",
+						"title": "Example alt text"
+					},
+				]
+			}, ['title', 'content', 'images']);
+		});
+	</script>
+</body>
+</html>
