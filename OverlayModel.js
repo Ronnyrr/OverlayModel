@@ -6,6 +6,7 @@ class OverlayModel {
 		this.init = this.init.bind(this);
 		this.addEvents = this.addEvents.bind(this);
 		this.insertData = this.insertData.bind(this);
+		this.closeOverlay = this.closeOverlay.bind(this);
 
 		// Class variables
 		this.overlay = document.createElement('div');
@@ -38,15 +39,23 @@ class OverlayModel {
 	}
 
 	addEvents() {
-		document.querySelector('.overlay-model__close').addEventListener('click', () => {
-			this.overlay.classList.remove('overlay-model--visible');
+		document.querySelector('.overlay-model__close').addEventListener('click', this.closeOverlay);
 
-			setTimeout(() => {
-				this.bodyElement.removeChild(this.overlay);
-			}, 1000);
-		});
+		document.onkeydown = (evt) => {
+			if (evt.keyCode === 27) {
+				this.closeOverlay();
+			}
+		};
 
 		this.insertData(this.data, this.dataOrder);
+	}
+
+	closeOverlay() {
+		this.overlay.classList.remove('overlay-model--visible');
+
+		setTimeout(() => {
+			this.bodyElement.removeChild(this.overlay);
+		}, 1000);
 	}
 
 	insertData(data, dataOrder) {
