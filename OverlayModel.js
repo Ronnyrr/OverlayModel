@@ -39,10 +39,12 @@ class OverlayModel {
 	}
 
 	addEvents() {
-		document.querySelector('.overlay-model__close').addEventListener('click', this.closeOverlay);
+		document.querySelector('.overlay-model__close').addEventListener('click', () => {
+			this.closeOverlay();
+		});
 
 		document.onkeydown = (evt) => {
-			if (evt.keyCode === 27) {
+			if (evt.keyCode === 27 && this.overlay) {
 				this.closeOverlay();
 			}
 		};
@@ -55,7 +57,8 @@ class OverlayModel {
 
 		setTimeout(() => {
 			this.bodyElement.removeChild(this.overlay);
-		}, 1000);
+			this.overlay = null;
+		}, this.fadeDuration);
 	}
 
 	insertData(data, dataOrder) {
