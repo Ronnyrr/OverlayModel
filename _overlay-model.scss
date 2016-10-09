@@ -12,19 +12,24 @@
 
 	&--visible {
 		opacity: 1;
+
+		.overlay-model__popup {
+			top: 50%;
+		}
 	}
 
 	&__popup {
 		position: absolute;
-		top: 20px;
+		top: 40%;
 		left: 50%;
 		width: 90%;
 		max-width: 700px;
-		min-height: 94vh;
+		min-height: 50vh;
 		padding: 20px;
 		margin-bottom: 20px;
 		background: #fff;
-		transform: translate(-50%, 0);
+		transform: translate(-50%, -50%);
+		transition: top .5s;
 	}
 
 	&__close {
@@ -39,10 +44,6 @@
 		font-size: 30px;
 		text-align: center;
 		background: #c0e3eb;
-
-		/* &:hover {
-			background: #134F63;
-		} */
 	}
 
 	// Specific content parts
