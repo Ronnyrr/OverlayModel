@@ -1,0 +1,115 @@
+.box {
+  display: flex; }
+
+.js-toggle-overlay {
+  width: 50px;
+  height: 50px; }
+
+.overlay-model {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 1s; }
+  .overlay-model--visible {
+    opacity: 1; }
+    .overlay-model--visible .overlay-model__popup {
+      top: 50%; }
+  .overlay-model__popup {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 90%;
+    max-width: 700px;
+    min-height: 50vh;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: #fff;
+    transform: translate(-50%, -50%);
+    transition: top .5s; }
+  .overlay-model__close {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    padding-top: 8px;
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    background: #c0e3eb; }
+  .overlay-model__title {
+    margin: 0 0 5px; }
+  .overlay-model__subtitle {
+    margin: 0 0 20px; }
+  .overlay-model__content {
+    margin-bottom: 20px; }
+  .overlay-model__image {
+    max-width: 100%;
+    margin-bottom: 5px; }
+    .overlay-model__image:last-child {
+      margin-bottom: 0; }
+
+.box {
+  display: flex; }
+
+.js-toggle-overlay {
+  width: 50px;
+  height: 50px; }
+
+.overlay-model {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 1s; }
+  .overlay-model--visible {
+    opacity: 1; }
+    .overlay-model--visible .overlay-model__popup {
+      top: 50%; }
+  .overlay-model__popup {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 90%;
+    max-width: 700px;
+    min-height: 50vh;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: #fff;
+    transform: translate(-50%, -50%);
+    transition: top .5s; }
+  .overlay-model__close {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    padding-top: 8px;
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    background: #c0e3eb; }
+  .overlay-model__title {
+    margin: 0 0 5px; }
+  .overlay-model__subtitle {
+    margin: 0 0 20px; }
+  .overlay-model__content {
+    margin-bottom: 20px; }
+  .overlay-model__image {
+    max-width: 100%;
+    margin-bottom: 5px; }
+    .overlay-model__image:last-child {
+      margin-bottom: 0; }

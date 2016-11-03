@@ -3,9 +3,13 @@ const concat = require('gulp-concat');
 const sass = require('gulp-sass');
 
 gulp.task('sass', function () {
-  return gulp.src('./overlay-model.scss')
+  const src = [
+    'scss/*.scss'
+  ]
+
+  return gulp.src(src)
     .pipe(sass())
-    .pipe(concat('overlayModel.css'))
+    .pipe(concat('styles.css'))
     .pipe(gulp.dest('./css/'));
 });
 
