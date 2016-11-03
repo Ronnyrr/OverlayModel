@@ -7,8 +7,7 @@
 
   <title>OverlayModel example</title>
 
-  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/4.1.1/normalize.css" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="box">
@@ -24,8 +23,8 @@
 
   <script type="text/javascript" src="OverlayModel.js"></script>
   <script type="text/javascript">
-    document.querySelector('.js-toggle-overlay').addEventListener('click', () => {
-      new OverlayModel({
+    const data = [
+      {
         "title": "Example title",
         "content": "Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.",
         "images": [
@@ -38,7 +37,30 @@
             "title": "Example alt text"
           },
         ]
-      }, ['title', 'content', 'images']);
+      },
+      {
+        "title": "Second title",
+        "content": "Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.",
+        "images": [
+          {
+            "src": "https://placehold.it/700x300",
+            "title": "Example alt text"
+          },
+          {
+            "src": "https://placehold.it/700x300",
+            "title": "Example alt text"
+          },
+        ]
+      }
+    ];
+
+    const toggleElems = document.querySelectorAll('.js-toggle-overlay');
+    toggleElems.forEach((elem, i) => {
+      console.log(i);
+
+      elem.addEventListener('click', () => {
+        new OverlayModel(data[i], ['title', 'content', 'images']);
+      });
     });
   </script>
 </body>
