@@ -19,6 +19,7 @@
     "gulp-sass": "^2.3.2"
   },
   "dependencies": {
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "normalize-css": "^2.3.1"
   }
 }
