@@ -58,10 +58,15 @@ class OverlayModel {
     document.onkeydown = (evt) => {
       if (evt.keyCode === 27 && this.overlay) { // ESC
         this.closeOverlay();
-      } else if (evt.keyCode === 37 && this.overlay) { // Left
-        this.nav('left');
-      } else if (evt.keyCode === 39 && this.overlay) { // Right
-        this.nav('right');
+      }
+
+      // Multiple items, add nav
+      if(this.length > 1) {
+        if (evt.keyCode === 37 && this.overlay) { // Left
+          this.nav('left');
+        } else if (evt.keyCode === 39 && this.overlay) { // Right
+          this.nav('right');
+        }
       }
     };
   }
