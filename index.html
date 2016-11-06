@@ -11,21 +11,25 @@
 </head>
 <body>
   <div class="box">
-    <div class="js-toggle-overlay">
+    <div class="js-toggle-overlay" data-get="example">
       One
     </div>
 
-    <div class="js-toggle-overlay">
+    <div class="js-toggle-overlay" data-get="another">
       Two
+    </div>
+
+    <div class="js-toggle-overlay" data-get="last-one">
+      Three
     </div>
   </div>
 
-
   <script type="text/javascript" src="OverlayModel.js"></script>
   <script type="text/javascript">
-    const data = [
-      {
-        "title": "Example title",
+    // @TODO nice error handeling als er meer data dan items zijn throw Error()
+    const data = {
+      'example': {
+        "title": "1. Example title",
         "content": "Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.",
         "images": [
           {
@@ -38,8 +42,22 @@
           },
         ]
       },
-      {
-        "title": "Second title",
+      'another': {
+        "title": "2. Second title",
+        "content": "Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.",
+        "images": [
+          {
+            "src": "https://placehold.it/700x300",
+            "title": "Example alt text"
+          },
+          {
+            "src": "https://placehold.it/700x300",
+            "title": "Example alt text"
+          },
+        ]
+      },
+      'last-one': {
+        "title": "3. Last title",
         "content": "Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.",
         "images": [
           {
@@ -52,14 +70,12 @@
           },
         ]
       }
-    ];
+    };
 
     const toggleElems = document.querySelectorAll('.js-toggle-overlay');
     toggleElems.forEach((elem, i) => {
-      console.log(i);
-
       elem.addEventListener('click', () => {
-        new OverlayModel(data[i], ['title', 'content', 'images']);
+        new OverlayModel(data, elem.dataset.get, ['title', 'content', 'images']);
       });
     });
   </script>
