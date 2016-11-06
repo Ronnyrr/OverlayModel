@@ -9,13 +9,7 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('./css/'));
 });
 
-gulp.task('fonts', function() {
-  return gulp.src('./node_modules/font-awesome/fonts/*')
-    .pipe(gulp.dest('./fonts'))
-})
-
 gulp.task('default', function() {
     gulp.start('sass');
-    gulp.start('fonts');
     gulp.watch('./scss/*.scss', ['sass']);
 });
