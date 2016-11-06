@@ -30,7 +30,7 @@ class OverlayModel {
 
     // Add items to initial fade
     const closeElement = document.createElement('span');
-    closeElement.classList.add('overlay-model__close', 'fa', 'fa-close');
+    closeElement.classList.add('overlay-model__close');
     this.overlay.appendChild(closeElement);
 
     this.createPopup(this.index);
