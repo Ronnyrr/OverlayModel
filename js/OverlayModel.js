@@ -86,7 +86,7 @@ class OverlayModel {
     this.overlay.appendChild(popupElement);
 
     // Get data for specific popup by index
-    const popupData = this.objectedIndex(data, index);
+    const popupData = this.objectedIndex(this.data, index);
     this.insertData(popupData, this.dataOrder);
 
     if(type) {
