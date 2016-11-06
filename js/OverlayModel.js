@@ -47,8 +47,12 @@ class OverlayModel {
 
   /** Add key and click events **/
   addEvents() {
-    document.querySelector('.overlay-model__close').addEventListener('click', () => {
+    document.querySelector('.overlay-model').addEventListener('click', () => {
       this.closeOverlay();
+    });
+
+    document.querySelector('.overlay-model__popup').addEventListener('click', () => {
+      event.stopPropagation();
     });
 
     document.onkeydown = (evt) => {
