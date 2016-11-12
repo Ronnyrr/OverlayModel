@@ -7,17 +7,20 @@ class OverlayModel {
     this.init = this.init.bind(this);
     this.addEvents = this.addEvents.bind(this);
     this.createPopup = this.createPopup.bind(this);
+    this.createNavigation = this.createNavigation.bind(this);
     this.nav = this.nav.bind(this);
     this.closeOverlay = this.closeOverlay.bind(this);
     this.insertData = this.insertData.bind(this);
 
     // Class variables
     this.overlay = document.createElement('div');
-    this.bodyElement = document.querySelector('body');
+    this.bodyElem = document.querySelector('body');
 
     // App variables
     this.fadeDuration = 1000;
+
     this.isBeingAdded = false;
+    this.isCurrentlyClosing = false;
 
     this.index = this.objectedIndex(data, get);
     this.length = Object.keys(this.data).length - 1;
@@ -28,19 +31,25 @@ class OverlayModel {
   init() {
     this.overlay.classList.add('overlay-model');
 
-    // Add items to initial fade
-    const closeElement = document.createElement('span');
-    closeElement.classList.add('overlay-model__close');
-    this.overlay.appendChild(closeElement);
+    // Create element to close
+    const closeElem = document.createElement('span');
+    closeElem.classList.add('overlay-model__close');
+    this.overlay.appendChild(closeElem);
 
+    // Add first popup based on index
     this.createPopup(this.index);
 
-    // Insert hidden overlay and fade in
-    this.bodyElement.insertBefore(this.overlay, this.bodyElement.firstChild);
+    // Insert hidden overlay and fade in by adding class
+    this.bodyElem.insertBefore(this.overlay, this.bodyElem.firstChild);
 
     setTimeout(() => {
       this.overlay.classList.add('overlay-model--visible');
     }, 100);
+
+    // Add navigation if more then 1 item
+    if(this.length > 0) {
+      this.createNavigation();
+    }
 
     this.addEvents();
   }
@@ -55,13 +64,26 @@ class OverlayModel {
       event.stopPropagation();
     });
 
+    if(this.length > 0) {
+      document.querySelector('.overlay-model__nav--left').addEventListener('click', () => {
+        event.stopPropagation();
+        this.nav('left');
+      });
+
+      document.querySelector('.overlay-model__nav--right').addEventListener('click', () => {
+        event.stopPropagation();
+        this.nav('right');
+      });
+    }
+
+    // Key events
     document.onkeydown = (evt) => {
       if (evt.keyCode === 27 && this.overlay) { // ESC
         this.closeOverlay();
       }
 
-      // Multiple items, add nav
-      if(this.length > 1) {
+      // Add navigation if more then 1 item exists
+      if(this.length > 0) {
         if (evt.keyCode === 37 && this.overlay) { // Left
           this.nav('left');
         } else if (evt.keyCode === 39 && this.overlay) { // Right
@@ -73,7 +95,6 @@ class OverlayModel {
 
   /** Add pop-up elem to overlay top/left/right **/
   createPopup(index = false, type = null) {
-    // @TODO popup vanaf links, link laten infaden huidige rechts eruit en visa versa
     const popupElement = document.createElement('div');
     popupElement.classList.add('overlay-model__popup');
 
@@ -92,6 +113,16 @@ class OverlayModel {
     if(type) {
       this.animateElems(type);
     }
+  }
+
+  createNavigation() {
+    const leftElem = document.createElement('span');
+    leftElem.classList.add('overlay-model__nav', 'overlay-model__nav--left');
+    this.overlay.appendChild(leftElem);
+
+    const rightElem = document.createElement('span');
+    rightElem.classList.add('overlay-model__nav', 'overlay-model__nav--right');
+    this.overlay.appendChild(rightElem);
   }
 
   nav(type) {
@@ -148,16 +179,23 @@ class OverlayModel {
   }
 
   closeOverlay() {
-    this.overlay.classList.remove('overlay-model--visible');
+    // Set currentlyClosing to true, so ESC can't error as long fadeDuration takes
+    if(!this.isCurrentlyClosing) {
+      this.isCurrentlyClosing = true;
 
-    setTimeout(() => {
-      this.bodyElement.removeChild(this.overlay);
-      this.overlay = null;
-    }, this.fadeDuration);
+      this.overlay.classList.remove('overlay-model--visible');
+
+      setTimeout(() => {
+        this.bodyElem.removeChild(this.overlay);
+        this.overlay = null;
+      }, this.fadeDuration);
+    }
   }
 
+  /** Insert specificied data elements to overlay **/
   insertData(data, dataOrder) {
     const addElements = [];
+
     for (const d in dataOrder) {
       switch (dataOrder[d]) {
         case 'title':
@@ -198,6 +236,7 @@ class OverlayModel {
       }
     }
 
+    // Add elements to popup (lastChild) in overlay
     for (const a in addElements) {
       if (addElements[a] instanceof HTMLImageElement) {
         this.overlay.lastChild.appendChild(addElements[a]);
@@ -207,7 +246,7 @@ class OverlayModel {
     }
   }
 
-  // Return index of key or return value by index
+  /** Return index of key or return value by index **/
   objectedIndex(data, get) {
     let i = 0;
 

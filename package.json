@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "gulp && nodemon server.js"
+    "dev": "NODE_ENV=dev gulp --dev"
   },
   "repository": {
     "type": "git",
