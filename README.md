@@ -9,7 +9,7 @@ First parameter should be an object containing all data that needs to be display
 There a few datatypes available, currently limited to title, subtitle, content and images.
 Second parameter is the order in which the data should be presented. Rearrange if necessary.
 
-## Data example
+## Static data example
 
 ```javascript
 const data = {
@@ -38,6 +38,40 @@ const data = {
   }
 };
 ```
+
+## Dynamic data example
+
+```html
+<div class="js-toggle-overlay" data-get="get-this-data" data-image="/img/example.jpg" data-title="Example title" data-content="Put here any content you want">
+  Click Me
+</div>
+```
+
+```javascript
+const toggleElems = document.querySelectorAll('.js-open-overlay');
+
+toggleElems.forEach(elem => {
+  data[elem.dataset.get] = {
+    'title': elem.dataset.title,
+    'content': elem.dataset.content,
+    'images': [
+        {
+            'src': elem.dataset.image,
+            'title': elem.dataset.title
+        }
+    ]
+  };
+});
+
+toggleElems.forEach(elem => {
+ elem.addEventListener('click', () => {
+   event.preventDefault();
+   new OverlayModel(data, elem.dataset.get, ['title', 'images', 'content']);
+ });
+});
+```
+
+Needed feature: more dynamic images available.
 
 ## Single
 
