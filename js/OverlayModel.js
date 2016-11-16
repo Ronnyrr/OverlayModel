@@ -239,7 +239,9 @@ class OverlayModel {
     // Add elements to popup (lastChild) in overlay
     for (const a in addElements) {
       if (addElements[a] instanceof HTMLImageElement) {
-        this.overlay.lastChild.appendChild(addElements[a]);
+        if(data[dataOrder[a]][0].src.length > 0) {
+          this.overlay.lastChild.appendChild(addElements[a]);
+        }
       } else {
         this.overlay.lastChild.appendChild(addElements[a]).innerHTML = data[dataOrder[a]];
       }
