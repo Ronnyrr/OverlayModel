@@ -48,11 +48,3 @@ toggleElems.forEach(elem => {
  });
 });
 ```
-
-## Single model
-
-```javascript
-document.querySelector('.js-toggle-overlay').addEventListener('click', () => {
-  new OverlayModel(data, 'get-this-data', ['title', 'content', 'images']);
-});
-```
