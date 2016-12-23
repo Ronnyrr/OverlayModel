@@ -11,7 +11,7 @@
 </head>
 <body>
   <div class="box">
-    <div class="js-toggle-overlay" data-get="example" data-title="1. Example title" data-content="Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla." data-images="https://placehold.it/350x150,https://placehold.it/350x150">
+    <div class="js-toggle-overlay" data-get="example" data-title="1. Example title" data-content="Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla." data-images="https://placehold.it/350x150,https://placehold.it/350x150,https://placehold.it/350x150">
       One
     </div>
 
@@ -19,7 +19,7 @@
       Two
     </div>
 
-    <div class="js-toggle-overlay" data-get="last-one" data-title="3. Last title" data-content="Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.">
+    <div class="js-toggle-overlay" data-get="last-one" data-title="3. Last title" data-content="Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla." data-images="https://placehold.it/350x150">
       Three
     </div>
   </div>
@@ -38,7 +38,7 @@
         imgSrc.forEach((img, i) => {
           images.push({
             'src': img,
-            'title': 'Images 1'
+            'title': `Images ${i}`
           })
         });
       }
@@ -50,7 +50,7 @@
       };
     });
 
-    console.log(data);
+    // console.log(data);
 
     toggleElems.forEach((elem, i) => {
       elem.addEventListener('click', () => {

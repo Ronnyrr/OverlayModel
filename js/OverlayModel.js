@@ -231,6 +231,8 @@ class OverlayModel {
 
                 case 'images':
                     const images = data[dataOrder[d]];
+                    const elemsArr = [];
+
                     for (const i in images) {
                         const image = document.createElement('img');
                         image.classList.add('overlay-model__image');
@@ -238,8 +240,10 @@ class OverlayModel {
                         image.setAttribute('src', images[i].src);
                         image.setAttribute('alt', images[i].title);
 
-                        addElements.push(image);
+                        elemsArr.push(image);
                     }
+
+                    addElements.push(elemsArr);
                     break;
 
                 default: null;
@@ -248,12 +252,10 @@ class OverlayModel {
 
         // Add elements to popup (lastChild) in overlay
         for (let a in addElements) {
-            if (addElements[a] instanceof HTMLImageElement) {
-                console.info(data[dataOrder[a]]);
-
-                if(data[dataOrder[a]]) {
-                    this.overlay.lastChild.appendChild(addElements[a]);
-                }
+            if(Array.isArray(addElements[a])) { //  instanceof HTMLImageElement
+                data[dataOrder[a]].forEach((img, i) => {
+                  this.overlay.lastChild.appendChild(addElements[a][i]);
+                });
             } else {
                 this.overlay.lastChild.appendChild(addElements[a]).innerHTML = data[dataOrder[a]];
             }
