@@ -9,36 +9,7 @@ First parameter should be an object containing all data that needs to be display
 There a few datatypes available, currently limited to title, subtitle, content and images.
 Second parameter is the order in which the data should be presented. Rearrange if necessary.
 
-## Static data example
-
-```javascript
-const data = {
-  'get-this-data': {
-    'title': 'Example title',
-    'content': 'Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.',
-    'images': [
-      {
-        'src': 'https://placehold.it/350x150',
-        'title': 'Example alt text'
-      },
-      {
-        'src': 'https://placehold.it/350x150',
-        'title': 'Example alt text'
-      }
-    ]
-  },
-  'or-another-data': {
-    'title': 'Last title',
-    'images': [
-      {
-        'src': 'https://placehold.it/350x150',
-        'title': 'Example alt text'
-      }
-    ]
-  }
-};
 ```
-
 ## Dynamic data example
 
 ```html

@@ -11,7 +11,7 @@
 </head>
 <body>
   <div class="box">
-    <div class="js-toggle-overlay" data-get="example" data-title="1. Example title" data-content="Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.">
+    <div class="js-toggle-overlay" data-get="example" data-title="1. Example title" data-content="Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla." data-images="https://placehold.it/350x150,https://placehold.it/350x150">
       One
     </div>
 
@@ -30,9 +30,23 @@
     const toggleElems = document.querySelectorAll('.js-toggle-overlay');
 
     toggleElems.forEach((elem, i) => {
+      const images = [];
+
+      if(elem.dataset.images) {
+        const imgSrc = elem.dataset.images.split(',');
+
+        imgSrc.forEach((img, i) => {
+          images.push({
+            'src': img,
+            'title': 'Images 1'
+          })
+        });
+      }
+
       data[elem.dataset.get] = {
         'title': elem.dataset.title,
-        'content': elem.dataset.content
+        'content': elem.dataset.content,
+        images
       };
     });
 
