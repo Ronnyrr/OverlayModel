@@ -9,11 +9,10 @@ First parameter should be an object containing all data that needs to be display
 There a few datatypes available, currently limited to title, subtitle, content and images.
 Second parameter is the order in which the data should be presented. Rearrange if necessary.
 
-```
 ## Dynamic data example
 
 ```html
-<div class="js-toggle-overlay" data-get="get-this-data" data-image="/img/example.jpg" data-title="Example title" data-content="Put here any content you want">
+<div class="js-toggle-overlay" data-get="trigger" data-image="https://placehold.it/350x150,https://placehold.it/350x150" data-title="Example title" data-content="Put here any content you want">
   Click Me
 </div>
 ```
@@ -21,16 +20,24 @@ Second parameter is the order in which the data should be presented. Rearrange i
 ```javascript
 const toggleElems = document.querySelectorAll('.js-open-overlay');
 
-toggleElems.forEach(elem => {
+toggleElems.forEach((elem, i) => {
+  const images = [];
+
+  if(elem.dataset.images) {
+    const imgSrc = elem.dataset.images.split(',');
+
+    imgSrc.forEach((img, i) => {
+      images.push({
+        'src': img,
+        'title': `Images ${i}`
+      })
+    });
+  }
+
   data[elem.dataset.get] = {
     'title': elem.dataset.title,
     'content': elem.dataset.content,
-    'images': [
-        {
-            'src': elem.dataset.image,
-            'title': elem.dataset.title
-        }
-    ]
+    images
   };
 });
 
@@ -42,23 +49,10 @@ toggleElems.forEach(elem => {
 });
 ```
 
-Needed feature: more dynamic images available.
-
-## Single
+## Single model
 
 ```javascript
 document.querySelector('.js-toggle-overlay').addEventListener('click', () => {
   new OverlayModel(data, 'get-this-data', ['title', 'content', 'images']);
-});
-```
-
-## Multiple
-
-```javascript
-const toggleBtns = document.querySelectorAll('.js-toggle-overlay');
-toggleBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    new OverlayModel(data, btn.getAttribute('data-get'), ['title', 'content', 'images']);
-  });
 });
 ```

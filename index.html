@@ -50,8 +50,6 @@
       };
     });
 
-    // console.log(data);
-
     toggleElems.forEach((elem, i) => {
       elem.addEventListener('click', () => {
         new OverlayModel(data, elem.dataset.get, ['title', 'content', 'images']);
