@@ -16,6 +16,11 @@
 
     .overlay-model__popup {
       top: 50%;
+
+      &--stick {
+        top: 20px;
+        transform: translate(-50%, 0);
+      }
     }
   }
 

@@ -11,68 +11,33 @@
 </head>
 <body>
   <div class="box">
-    <div class="js-toggle-overlay" data-get="example">
+    <div class="js-toggle-overlay" data-get="example" data-title="1. Example title" data-content="Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.">
       One
     </div>
 
-    <div class="js-toggle-overlay" data-get="another">
+    <div class="js-toggle-overlay" data-get="another" data-title="2. Second title" data-content="Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.">
       Two
     </div>
 
-    <div class="js-toggle-overlay" data-get="last-one">
+    <div class="js-toggle-overlay" data-get="last-one" data-title="3. Last title" data-content="Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.">
       Three
     </div>
   </div>
 
   <script type="text/javascript" src="OverlayModel.js"></script>
   <script type="text/javascript">
-    // @TODO nice error handeling als er meer data dan items zijn throw Error()
-    const data = {
-      'example': {
-        'title': '1. Example title',
-        'content': 'Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.',
-        'images': [
-          {
-            'src': 'https://placehold.it/700x300',
-            'title': 'Example alt text'
-          },
-          {
-            'src': 'https://placehold.it/700x300',
-            'title': 'Example alt text'
-          },
-        ]
-      },
-      'another': {
-        'title': '2. Second title',
-        'content': 'Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.',
-        'images': [
-          {
-            'src': 'https://placehold.it/700x300',
-            'title': 'Example alt text'
-          },
-          {
-            'src': 'https://placehold.it/700x300',
-            'title': 'Example alt text'
-          },
-        ]
-      },
-      'last-one': {
-        'title': '3. Last title',
-        'content': 'Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla.',
-        'images': [
-          {
-            'src': 'https://placehold.it/700x300',
-            'title': 'Example alt text'
-          },
-          {
-            'src': 'https://placehold.it/700x300',
-            'title': 'Example alt text'
-          },
-        ]
-      }
-    };
-
+    const data = [];
     const toggleElems = document.querySelectorAll('.js-toggle-overlay');
+
+    toggleElems.forEach((elem, i) => {
+      data[elem.dataset.get] = {
+        'title': elem.dataset.title,
+        'content': elem.dataset.content
+      };
+    });
+
+    console.log(data);
+
     toggleElems.forEach((elem, i) => {
       elem.addEventListener('click', () => {
         new OverlayModel(data, elem.dataset.get, ['title', 'content', 'images']);

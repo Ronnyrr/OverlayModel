@@ -33,6 +33,9 @@
     opacity: 1; }
     .overlay-model--visible .overlay-model__popup {
       top: 50%; }
+      .overlay-model--visible .overlay-model__popup--stick {
+        top: 20px;
+        transform: translate(-50%, 0); }
   .overlay-model__popup {
     position: absolute;
     top: 40%;
@@ -2831,6 +2834,9 @@ table {
     opacity: 1; }
     .overlay-model--visible .overlay-model__popup {
       top: 50%; }
+      .overlay-model--visible .overlay-model__popup--stick {
+        top: 20px;
+        transform: translate(-50%, 0); }
   .overlay-model__popup {
     position: absolute;
     top: 40%;
